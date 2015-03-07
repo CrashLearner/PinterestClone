@@ -1,0 +1,18 @@
+= simple_form_for @pin, html: { multipart:true } do |f|
+	- if @pin.errors.any?
+		#errors
+			%h2
+			= pluralize(@pin.errors.count, "error")
+			prevented this Pin from saving
+			%ul
+				- @pin.errors.full_messasges.each do |msg|
+					%li= msg
+
+	.form-group
+		= f.input :title, input_html: { class: 'form-control' }
+
+	.form-group
+		= f.input :description, input_html: { class: 'form-control' }
+
+
+	= f.button :submit, class: "btn btn-primary"
